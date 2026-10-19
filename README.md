@@ -1,65 +1,61 @@
 # MediQ AI Assist
 
-AI-powered extension of the MediQ Clinic system.  
-Patients describe symptoms → AI generates a clean summary for the doctor.  
-Doctors paste notes → AI creates a short professional draft.
+A small clinic tool I built to help neighborhood doctors handle patient flow better.
 
-Built with **MERN + Google Gemini**.
+Most small clinics still mix paper tokens and WhatsApp messages. This project tries to fix two annoying parts of that:
 
-## Features
-- JWT authentication with roles (patient / doctor / reception)
-- Patient symptom chat → structured AI summary
-- Doctor note assistant → clean draft + follow-up suggestion
-- Existing clinic queue & appointment logic (from original MediQ)
+1. Patient writes symptoms in simple language → AI turns it into a clean summary the doctor can actually read in 10 seconds.
+2. Doctor pastes rough notes after the visit → AI makes a short, neat record + one follow-up suggestion.
 
-## Tech Stack
-- Frontend: React (Vite) + Tailwind
-- Backend: Node.js + Express
-- Database: MongoDB Atlas
-- AI: Google Gemini 1.5 Flash
-- Auth: JWT
+It’s built on top of my earlier MediQ Clinic project (queue + appointments).
 
-## Setup
+## Why I made this
 
-### Backend
+I kept seeing doctors in my area waste time reading messy symptom descriptions and rewriting the same notes. I wanted something simple that actually helps them instead of adding more work.
+
+## What’s working right now
+
+- Patient can describe symptoms and get a structured summary
+- Doctor can paste notes and get a clean draft
+- JWT login (patient / doctor roles)
+- Basic queue logic from the original MediQ project
+
+## Tech I used
+
+- React (Vite) + Tailwind on the frontend
+- Node + Express backend
+- MongoDB
+- Google Gemini for the AI part (kept it simple on purpose)
+
+## How to run it locally
+
+**Backend**
 ```bash
 cd server
 npm install
-# Create .env
 cp .env.example .env
-# Add your keys
+# put your MongoDB URI + Gemini key
 npm run dev
 ```
 
-### Frontend
+**Frontend**
 ```bash
 cd client
 npm install
 npm run dev
 ```
 
-### Environment Variables (server/.env)
-```
-MONGO_URI=your_mongodb_atlas_uri
-JWT_SECRET=your_secret
-GEMINI_API_KEY=your_gemini_key
-PORT=5000
-```
+## Things I still want to improve
 
-### Frontend (.env)
-```
-VITE_API_URL=http://localhost:5000
-```
+- Better error handling when Gemini is slow
+- Save the AI summaries properly in the database
+- A cleaner doctor dashboard
+- Deploy it so people can actually try it
 
-## API Endpoints
-- `POST /api/ai/symptom-summary` (protected)
-- `POST /api/ai/note-draft` (protected)
+If you’re a doctor or running a small clinic and this sounds useful, feel free to open an issue or just message me.
 
-## Deployment
-- Backend → Render
-- Frontend → Vercel
-- Database → MongoDB Atlas
+---
 
-## Author
-Sarthak Giri  
-GitHub: [akksj](https://github.com/akksj)
+**Sarthak Giri**  
+Building small tools for real local problems  
+[GitHub](https://github.com/akksj) · [LinkedIn](https://www.linkedin.com/in/sarthak-giri-117490296)
