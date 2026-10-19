@@ -5,7 +5,8 @@ const auth = require('../middleware/auth');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Patient symptom summary
+// Patient describes symptoms in normal language.
+// This endpoint turns it into something a doctor can quickly scan.
 router.post('/symptom-summary', auth, async (req, res) => {
   try {
     const { message } = req.body;
@@ -36,7 +37,7 @@ Return in this exact format:
   }
 });
 
-// Doctor note draft
+// Doctor pastes rough notes. This cleans them up a bit.
 router.post('/note-draft', auth, async (req, res) => {
   try {
     const { notes } = req.body;
